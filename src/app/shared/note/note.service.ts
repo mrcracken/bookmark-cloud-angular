@@ -24,12 +24,10 @@ export class NoteService {
 
   save(note: any): Observable<any> {
     let result: Observable<Object>;
-    console.log(note['href']);
+    console.log("note = " + note);
     if (note['href']) {
-      console.log("put");
       result = this.http.put(note.href, note);
     } else {
-      console.log("post");
       result = this.http.post(this.NOTE_API, note);
     }
     return result;

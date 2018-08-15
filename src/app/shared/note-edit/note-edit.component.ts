@@ -11,6 +11,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./note-edit.component.css']
 })
 export class NoteEditComponent implements OnInit, OnDestroy {
+
+public NOTE_API_URL = '//localhost:8080/api/notes/';
+
   note: any = {};
 
   sub: Subscription;
@@ -24,11 +27,12 @@ export class NoteEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
+      console.log(id);
       if (id) {
         this.noteService.get(id).subscribe((note: any) => {
           if (note) {
             this.note = note;
-            this.note.href = note._links.self.href;
+            this.note.href = this.NOTE_API_URL + id;
             this.giphyService.get(note.title).subscribe(url => note.giphyUrl = url);
           } else {
             console.log(`Note with id '${id}' not found, returning to list`);
@@ -48,6 +52,7 @@ export class NoteEditComponent implements OnInit, OnDestroy {
   }
 
   save(form: NgForm) {
+    console.log("save works!");
     this.noteService.save(form).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));

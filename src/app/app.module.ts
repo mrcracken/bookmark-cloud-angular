@@ -14,6 +14,8 @@ import { NoteEditComponent } from './shared/note-edit/note-edit.component';
 import { IndexComponent } from './shared/index/index.component';
 import { LayoutComponent } from './ui/layout/layout.component';
 import { LoginComponent } from './ui/login/login.component';
+import { SignupComponent } from './ui/signup/signup.component';
+import { HomeComponent } from './ui/home/home.component';
 
 /**
  * For all issues with Angular Material visit
@@ -22,8 +24,7 @@ import { LoginComponent } from './ui/login/login.component';
 
 const appRoutes: Routes = [
 
-   
-  { path: '', redirectTo: '/note-list', pathMatch: 'full' },
+  { path: '', redirectTo: '/layout', pathMatch: 'full' },
   {
     path: 'note-list',
     component: NoteListComponent
@@ -44,6 +45,14 @@ const appRoutes: Routes = [
     path: 'login',
     component: LoginComponent
   },
+  {
+    path: 'signup',
+    component: SignupComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
 ];
 
 @NgModule({
@@ -54,6 +63,8 @@ const appRoutes: Routes = [
     IndexComponent,
     LayoutComponent,
     LoginComponent,
+    SignupComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
